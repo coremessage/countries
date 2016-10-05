@@ -39,10 +39,6 @@ module ISO3166
       to_s <=> other.to_s
     end
 
-    def currency
-      Money::Currency.find(data['currency_code'])
-    end
-
     def subdivisions?
       File.exist?(subdivision_file_path)
     end

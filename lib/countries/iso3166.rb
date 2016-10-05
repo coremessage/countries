@@ -1,6 +1,5 @@
 require 'yaml'
 require 'i18n_data'
-require 'money'
 
 require 'countries/kwarg_struct'
 require 'countries/configuration'

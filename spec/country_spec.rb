@@ -382,16 +382,6 @@ describe ISO3166::Country do
     end
   end
 
-  describe 'currency' do
-    it 'should return an instance of Currency' do
-      expect(country.currency).to be_a(Money::Currency)
-    end
-
-    it 'should allow access to symbol' do
-      expect(country.currency.symbol).to eq('$')
-    end
-  end
-
   describe 'codes' do
     it 'returns a hash with the data of the country' do
       expect(ISO3166::Country.codes).to be_a Array
@@ -499,7 +489,7 @@ describe ISO3166::Country do
     end
 
     context 'when using find_all method' do
-      let(:list) { ISO3166::Country.find_all_by_currency('USD') }
+      let(:list) { ISO3166::Country.find_all_by_alpha3('CAN') }
 
       it 'should be an Array of Arrays' do
         expect(list).to be_a(Array)
@@ -612,7 +602,7 @@ describe ISO3166::Country do
     end
 
     context 'when using find_all method' do
-      let(:list) { ISO3166::Country.find_all_countries_by_currency('USD') }
+      let(:list) { ISO3166::Country.find_all_countries_by_alpha3('CAN') }
 
       it 'should be an Array of Country objects' do
         expect(list).to be_a(Array)
@@ -636,22 +626,6 @@ describe ISO3166::Country do
       end.flatten
 
       expect(names.size).to eq(names.uniq.size)
-    end
-  end
-
-  describe 'Norway' do
-    let(:norway) { ISO3166::Country.search('NO') }
-
-    it 'should have a currency' do
-      expect(norway.currency).to be_a(Money::Currency)
-    end
-  end
-
-  describe 'Guernsey' do
-    let(:guernsey) { ISO3166::Country.search('GG') }
-
-    it 'should have a currency' do
-      expect(guernsey.currency.iso_code).to eq('GBP')
     end
   end
 
